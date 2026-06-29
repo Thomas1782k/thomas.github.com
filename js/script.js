@@ -10,28 +10,37 @@ window.addEventListener("load",()=>{
 });
 
 /*-------Typing-------*/
-const texts=['Software Developer','Web Developer'];
-let c=0;
-let i=0;
-let ctxt="";
-let letter="";
-type();
-function type()
-{
-    if(c===texts.length)
-    c=0;
 
-    ctxt=texts[c];
-    letter=ctxt.slice(0,++i);
+const texts = [
+    "Software Engineer 💻",
+    "Athlete 🏃💨",
+    "Chef 🍜"
+];
 
-    document.querySelector(".typing").textContent=letter;
-    if(letter.length===ctxt.length)
-    {
+let c = 0;
+let i = 0;
+
+function type() {
+    if (c >= texts.length) c = 0;
+
+    const chars = [...texts[c]];
+
+    document.querySelector(".typing").textContent =
+        chars.slice(0, ++i).join("");
+
+    if (i >= chars.length) {
         c++;
-        i=0;
+        i = 0;
+
+        // Hold the complete word for 1 second
+        setTimeout(type, 1000);
+    } else {
+        // Typing speed
+        setTimeout(type, 150);
     }
-    setTimeout(type,400);
 }
+
+type();
 
 /*------------Toogle Navbar--------------*/ 
 const navToggler = document.querySelector(".nav-toggler");
